@@ -2,21 +2,20 @@
 let img_path = "../../public/Resources/main-content3.svg"
 import 'aos/dist/aos.css'; 
 ---
-<body>
+<body class="overflow-x-hidden">
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<div class="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto">
-  <div class="w-full md:w-3/5 mb-6 md:mb-0">
-    <h1 data-aos="fade-in" data-aos-delay="500" class=" mb-4 custom-title">Entérate de todo lo que Krea está logrando</h1>
-    <a href="/convocatorias" data-aos="zoom-in" data-aos-delay="500" class="bg-teal-500 text-white  text-l py-2 px-4 rounded-[20px] py-3 px-6 hover:bg-[#369b96]">Conoce más aquí</a>
+<section >
+  <div class="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto overflow-x-hidden">
+    <div class="w-full md:w-3/5 mb-6 md:mb-0">
+      <h1 data-aos="fade-in" data-aos-delay="500" class="mb-4 custom-title">Entérate de todo lo que Krea está logrando</h1>
+      <a href="/convocatorias" data-aos="zoom-in" data-aos-delay="500" class="bg-teal-500 text-white text-l py-2 px-4 rounded-[20px] py-3 px-6 hover:bg-[#369b96]">Conoce más aquí</a>
+    </div>
+    <div class="w-full md:w-2/5 flex justify-center items-center" data-aos="fade-left" data-aos-delay="500">
+      <dotlottie-player src="https://lottie.host/badb6687-b59b-488e-ab7f-506750230556/WJqcMpHQ0e.lottie" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+    </div>
   </div>
-  <div class="w-full md:w-2/5 flex justify-center items-center" data-aos="fade-left" data-aos-delay="500">
-    <dotlottie-player src="https://lottie.host/badb6687-b59b-488e-ab7f-506750230556/WJqcMpHQ0e.lottie" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
-  </div>
-  <script>
-    import AOS from 'aos';
-    AOS.init();
-  </script>
-</div>
+</section>
+
 <script>
   import AOS from 'aos';
   AOS.init();
@@ -45,3 +44,4 @@ import 'aos/dist/aos.css';
     }
 }
 </style>
+

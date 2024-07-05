@@ -133,24 +133,27 @@ import { Image } from 'astro:assets';
     </header>
 
     <script>
-        const menuIcon = document.getElementById('menuIcon');
-        const navMenu = document.getElementById('navMenu');
-        const header = document.getElementById('Header');
-
-        menuIcon.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-            menuIcon.name = menuIcon.name === 'menu-outline' ? 'close-outline' : 'menu-outline';
-        });
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 0) {
+        document.addEventListener('astro:page-load', () => {
+          const menuIcon = document.getElementById('menuIcon');
+          const navMenu = document.getElementById('navMenu');
+          const header = document.getElementById('Header');
+      
+          if (menuIcon && navMenu && header) {
+            menuIcon.addEventListener('click', () => {
+              navMenu.classList.toggle('show');
+              menuIcon.setAttribute('name', menuIcon.getAttribute('name') === 'menu-outline' ? 'close-outline' : 'menu-outline');
+            });
+      
+            window.addEventListener('scroll', () => {
+              if (window.scrollY > 0) {
                 header.style.boxShadow = '1px 1px 15px rgba(0, 0, 0, 0.3)';
-            } else {
+              } else {
                 header.style.boxShadow = 'none';
-            }
+              }
+            });
+          }
         });
-
-    </script>
+      </script>
 
 </body>
 
