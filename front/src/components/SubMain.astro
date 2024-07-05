@@ -3,7 +3,7 @@ import ContentMedia from "./ContentMedia.astro";
 let img_path = "../../public/Resources/main-content2.svg"
 ---
 <html>
-  <body>
+  <body class="overflow-x-hidden">
 <head>
   <link rel="stylesheet" href="./Styles/GlobalCss.css"> 
 </head>
@@ -60,7 +60,8 @@ let img_path = "../../public/Resources/main-content2.svg"
     font-weight: 700; 
   }
   .custom-font-title{
-        color: #41bbb1;
+        color: var(--second-color);
         font-weight: 700;
     }
 </style>
+
