@@ -24,7 +24,7 @@ import 'aos/dist/aos.css';
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
+        align-items: stretch; /* Asegura que todas las tarjetas tengan la misma altura */
         width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -35,7 +35,7 @@ import 'aos/dist/aos.css';
         padding: 20px;
         text-align: center;
         flex: 1 1 200px;
-        max-width: 300px;
+        max-width: 250px;
         transition: transform 0.2s;
         display: flex;
         flex-direction: column;
@@ -65,21 +65,21 @@ import 'aos/dist/aos.css';
       @media (max-width: 600px) {
         .card {
           flex: 1 1 100%;
+          max-width: none; /* Asegura que las tarjetas ocupen todo el ancho disponible */
         }
       }
     </style>
   </head>
   
-  
 <body>
     <div class="cont">
-        <div data-aos="fade-right" data-aos-delay="300"  class="card">
+        <div data-aos="fade-right" data-aos-delay="300" class="card">
             <div class="icon">
               <i class="fa-solid fa-check-double"></i>
             </div>
             <h2>Encuentra un aspecto diferenciador</h2>
         </div>
-        <div data-aos="fade-down" data-aos-delay="300"  class="card">
+        <div data-aos="fade-down" data-aos-delay="300" class="card">
             <div class="icon">
               <i class="fa-solid fa-sack-dollar"></i>
             </div>
