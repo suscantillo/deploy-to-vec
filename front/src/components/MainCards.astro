@@ -5,7 +5,7 @@ import 'aos/dist/aos.css';
 ---
 <body class="overflow-x-hidden">
 <div class="flex flex-col items-center mb-8">
-  <h1 data-aos="fade-right" class="text-center mb-4 font-bold custom-text-color custom-font p-4">Las cifras ratifican nuestro éxito</h1>
+  <h1 data-aos="fade-right" class="text-center mb-4 font-bold custom-font custom-title">Las cifras ratifican nuestro éxito</h1>
   <CardsContainer>
     <Card>
       <div slot="front">
@@ -44,24 +44,65 @@ import 'aos/dist/aos.css';
 
 
 <style>
+
+  .custom-title {
+    font-size: 2.5rem;
+    color: #225b73;
+    font-weight: 700;
+    margin: 50px;
+  }
+
+  .custom-text-color {
+    color: #225b73;
+    font-weight: 700;
+    margin: 50px;
+    font-size: 2.5em;
+  }
+
+  .custom-font {
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .custom-font-card {
+    font-size: 3em;
+    color: #41bbb1;
+  }
+
+  .custom-font-subcard {
+    color: #225b73;
+    font-size: 1.5em;
+    font-weight: 500;
+  }
+
+  @media (max-width: 1024px) {
     .custom-text-color {
-      color: #225b73;
-      font-weight: 700;
-      margin: 50px;
+      font-size: 2em;
+    }
+    .custom-font-card {
       font-size: 2.5em;
     }
-    .custom-font {
-      font-family: 'Raleway', sans-serif;
+    .custom-font-subcard {
+      font-size: 1.2em;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .custom-title {
+      font-size: 2rem;
+      margin: 10px;
     }
 
-    .custom-font-card{
-        font-size: 3em;
-        color: #41bbb1;
+    .custom-text-color {
+      font-size: 2em;
     }
-
-    .custom-font-subcard{
-        color: #225b73;
-        font-size: 1.5em;
-        font-weight: 500;
+    .custom-font-card {
+      font-size: 2.5em;
     }
-  </style>
+    .custom-font-subcard {
+      font-size: 1.5em;
+    }
+    .flex-col {
+      align-items: center;
+    }
+  }
+</style>
