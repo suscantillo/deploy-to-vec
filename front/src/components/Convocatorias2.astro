@@ -44,7 +44,7 @@ const posts = await getPosts();
 <div class="cards-container">
   {posts.map((post) => (
     <div class="card">
-      <a href={`/post/${post.attributes.slug}`} title={post.attributes.title}>
+      <a href={`/convocatorias/${post.attributes.slug}`} title={post.attributes.title}>
         <img 
           src={getImageUrl(post.attributes.featuredimage)} 
           alt={post.attributes.title} 
@@ -55,7 +55,7 @@ const posts = await getPosts();
       </span>
       <div class="details">
         <h3>
-          <a href={`/post/${post.attributes.slug}`}>{post.attributes.title}</a>
+          <a href={`/convocatorias/${post.attributes.slug}`}>{post.attributes.title}</a>
         </h3>
         <p>{post.attributes.excerpt || 'No hay resumen disponible'}</p>
         <div class="meta">
@@ -127,7 +127,6 @@ const posts = await getPosts();
         color: #41bbb1;
         font-size: 40px;
         font-weight: 700;
-        line-height: 1.1;
     }
 
     .opportunities-section .content p {
@@ -142,7 +141,7 @@ const posts = await getPosts();
     @media (max-width: 768px) {
 
         .title-column h3 {
-            font-size: 26px;
+            font-size: 32px;
             margin-top: 40px;
 
         }
@@ -215,7 +214,7 @@ const posts = await getPosts();
     }
 
     .details {
-        padding: 30px 40px;
+        padding: 40px;
     }
 
     .details h3 {
@@ -229,6 +228,8 @@ const posts = await getPosts();
         color: #555;
         line-height: 1.6;
         margin-bottom: 10px;
+        height: 4.8em; 
+        overflow: hidden;
     }
 
     .meta {

@@ -1,0 +1,359 @@
+---
+import Separator from "./Separator.astro"
+const STRAPI_URL = 'https://krea-back-repo-production.up.railway.app'; 
+import { marked } from 'marked';
+
+const { title, content, publishedAt, featuredimage, category, author, excerpt }  = Astro.props;
+
+
+async function getRecommendedPosts() {
+  try {
+    const apiUrl = new URL('${STRAPI_URL}/api/posts?populate=*&sort=publishedAt:desc&pagination[limit]=3');
+    const response = await fetch(apiUrl.toString(), {cache: 'no-store'});
+    const { data } = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching recommended posts:', error);
+    return [];
+  }
+}
+
+const recommendedPosts = await getRecommendedPosts();
+
+function getDate(date: string){
+    let newdate = date.match(/^\d{4}-\d{2}-\d{2}/);
+    return newdate[0]
+}
+const formattedPublishedAt = getDate(publishedAt)
+const htmlContent = marked(content);
+
+function getImageUrl(imageObject) {
+  if (!imageObject || !imageObject.data || !imageObject.data.attributes || !imageObject.data.attributes.url) {
+    return 'https://via.placeholder.com/300x200';
+  }
+  const imageUrl = imageObject.data.attributes.url;
+  return '${STRAPI_URL}${imageUrl}';
+}
+
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style is:global>
+        .main-content {
+            max-width: 1200px;
+            margin: 9rem auto 1px auto;
+        
+        }
+        .grid {
+            display: flex;
+            flex-direction: column;
+        }
+        .category-tag-wrapper {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        .blog-title {
+            font-size: 3em;
+        }
+        .category-tag {
+            font-weight: 600;
+            display: inline-block;
+            border-radius: 100px;
+            background-color: #41bbb1;
+            padding: 0.5em 0.9em;
+            font-size: 0.9em;
+            line-height: 1.2;
+            color: white;
+            width: fit-content;
+        }
+
+        .date-tag {
+            margin-left: 10px;
+            font-weight: 600;
+            display: inline-block;
+            border-radius: 100px;
+            background-color: #225b73;;
+            padding: 0.5em 0.9em;
+            font-size: 0.9em;
+            line-height: 1.2;
+            color: white;
+            width: fit-content;
+        
+        }
+        .excerpt-text {
+            font-size: 1.5em;
+        }
+        
+        @media (min-width: 768px) {
+            .grid {
+                flex-direction: row;
+            }
+        }
+        .text-container, .img-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .img-container {
+            align-items: center;
+        }
+        .main-image {
+            max-width: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+    .markdown-content {
+    max-width: 800px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+    color: #333;
+    line-height: 1.6;
+    border-radius: 8px;
+}
+
+.markdown-content h1, .markdown-content h2, .markdown-content h3, 
+.markdown-content h4, .markdown-content h5, .markdown-content h6 {
+    margin-top: 0.3em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    color: #225b73;
+}
+
+.markdown-content h1 { 
+    font-size: 2.5em; 
+    border-bottom: 2px solid #41bbb1;
+    padding-bottom: 0.3em;
+}
+
+.markdown-content h2 { 
+    font-size: 2em;
+    border-bottom: 1px solid #41bbb1;
+    padding-bottom: 0.2em;
+}
+
+.markdown-content h3 { font-size: 1.75em; }
+.markdown-content h4 { font-size: 1.5em; }
+.markdown-content h5 { font-size: 1.25em; }
+.markdown-content h6 { font-size: 1em; }
+
+.markdown-content p { 
+    margin-bottom: 1em;
+    text-align: justify;
+}
+
+.markdown-content ul, .markdown-content ol {
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+.markdown-content li { 
+    margin-bottom: 0.5em;
+    list-style-type: square;
+}
+
+.markdown-content a {
+    color: #41bbb1;
+    text-decoration: none;
+    border-bottom: 1px dotted #41bbb1;
+    transition: all 0.3s ease;
+}
+
+.markdown-content a:hover {
+    color: #225b73;
+}
+
+.markdown-content blockquote {
+    border-left: 4px solid #41bbb1;
+    padding: 1em;
+    margin: 1em 0;
+    background-color: rgba(65, 187, 177, 0.1);
+    font-style: italic;
+    color: #225b73;
+}
+
+.markdown-content code {
+    background-color: #e8e8e8;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: monospace;
+    color: #225b73;
+}
+
+.markdown-content pre {
+    background-color: #e8e8e8;
+    padding: 1em;
+    overflow-x: auto;
+    border-radius: 3px;
+    border-left: 4px solid #225b73;
+}
+
+.markdown-content pre code {
+    background-color: transparent;
+    padding: 0;
+    color: #333;
+}
+
+.markdown-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-content hr {
+    border: none;
+    border-top: 2px solid #41bbb1;
+    margin: 2em 0;
+}
+
+.markdown-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.markdown-content th, .markdown-content td {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    text-align: left;
+}
+
+.markdown-content th {
+    background-color: #225b73;
+    color: #F2F2F2;
+}
+
+.markdown-content tr:nth-child(even) {
+
+}
+.content-wrapper {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .content-wrapper {
+                flex-direction: row;
+            }
+        }
+
+        .markdown-content {
+            flex: 2;
+            margin-right: 2rem;
+        }
+
+        .recommended-posts {
+            flex: 1;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-content {
+                margin-right: 0rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .recommended-posts {
+                margin-top: 0;
+            }
+        }
+
+
+        .recommended-posts h2 {
+            font-size: 1.5em;
+            color: #225b73;
+            margin-bottom: 1rem;
+        }
+
+        .recommended-post {
+            margin-bottom: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .recommended-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .recommended-post img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .recommended-post-content {
+            padding: 1rem;
+        }
+
+        .recommended-post h3 {
+            font-size: 1.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .recommended-post p {
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <section class="main-content">
+        <div class="grid">
+            <div class="text-container">
+                <h1 class="blog-title font-bold mb-4">{title}</h2>
+                <div class="category-tag-wrapper">
+                    <div class="category-tag">
+                        {category?.data?.attributes?.Name}
+                    </div>
+                    <div class="date-tag ">
+                        {formattedPublishedAt}
+                    </div>
+                </div>
+               
+                <p class="text-gray-700 mb-4 excerpt-text">
+                    {excerpt}
+                </p>
+            </div>
+            <div class="img-container">
+                <img class ="main-image" src={featuredimage} alt="IMG" width="468px" height="468px">
+            
+            </div>
+        </div>
+    </section>
+    <Separator/>
+    <div class="content-wrapper">
+        <div class="markdown-content">
+            <Fragment set:html={htmlContent} />
+        </div>
+        <div class="recommended-posts">
+            <h2>Posts Recomendados</h2>
+            {recommendedPosts.map((post) => (
+                <div class="recommended-post">
+                    <a href={'/convocatorias/${post.attributes.slug}'}>
+                        <img src={getImageUrl(post.attributes.featuredimage)} alt={post.attributes.title} />
+                        <div class="recommended-post-content">
+                            <h3>{post.attributes.title}</h3>
+                            <p>{post.attributes.excerpt || 'No hay resumen disponible'}</p>
+                        </div>
+                    </a>
+                </div>
+            ))}
+        </div>
+    </div>
+</body>
+</html>
