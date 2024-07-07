@@ -8,7 +8,7 @@ const { title, content, publishedAt, featuredimage, category, author, excerpt } 
 
 async function getRecommendedPosts() {
   try {
-    const apiUrl = new URL('${STRAPI_URL}/api/posts?populate=*&sort=publishedAt:desc&pagination[limit]=3');
+    const apiUrl = new URL(`${STRAPI_URL}/api/posts?populate=*&sort=publishedAt:desc&pagination[limit]=3`);
     const response = await fetch(apiUrl.toString(), {cache: 'no-store'});
     const { data } = await response.json();
     return data;
@@ -32,7 +32,7 @@ function getImageUrl(imageObject) {
     return 'https://via.placeholder.com/300x200';
   }
   const imageUrl = imageObject.data.attributes.url;
-  return '${STRAPI_URL}${imageUrl}';
+  return `${STRAPI_URL}${imageUrl}`;
 }
 
 
