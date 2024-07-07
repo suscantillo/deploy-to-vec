@@ -44,9 +44,10 @@ function getImageUrl(imageObject) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style is:global>
+
         .main-content {
             max-width: 1200px;
-            margin: 9rem auto 1px auto;
+            margin: 5rem auto 1px auto;
         
         }
         .grid {
@@ -275,14 +276,31 @@ function getImageUrl(imageObject) {
         .recommended-posts {
             display:flex;
             flex-direction: column ;
-            align-items: center 
+            align-items: center ;
+            margin-top: 3em;
         }
 
-        .recommended-posts h2 {
+
+        @media (max-width: 768px) {
+            .recommended-posts {
+                margin-top: 0;
+            }
+        }
+
+
+        .main-title-card {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .main-title{
             font-size: 1.5em;
             color: #225b73;
             margin-bottom: 1rem;
+            font-weight: 600;
         }
+
 
         .recommended-post {
             width: 80%;
@@ -348,13 +366,13 @@ function getImageUrl(imageObject) {
             <Fragment set:html={htmlContent} />
         </div>
         <div class="recommended-posts">
-            <h2>Posts Recomendados</h2>
+            <h2 class="main-title">Posts Recomendados</h2>
             {recommendedPosts.map((post) => (
                 <div class="recommended-post">
                     <a href={`/convocatorias/${post.attributes.slug}`}>
                         <img src={getImageUrl(post.attributes.featuredimage)} alt={post.attributes.title} />
                         <div class="recommended-post-content">
-                            <h2>{post.attributes.title}</h2>
+                            <h2 class="main-title-card">{post.attributes.title}</h2>
                             <div class="category-tag">
                                 {post.attributes.category.data.attributes.Name}
                             </div>
