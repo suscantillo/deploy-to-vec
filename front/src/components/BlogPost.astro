@@ -344,7 +344,7 @@ function getImageUrl(imageObject) {
             <h2>Posts Recomendados</h2>
             {recommendedPosts.map((post) => (
                 <div class="recommended-post">
-                    <a href={'/convocatorias/${post.attributes.slug}'}>
+                    <a href={`/convocatorias/${post.attributes.slug}`}>
                         <img src={getImageUrl(post.attributes.featuredimage)} alt={post.attributes.title} />
                         <div class="recommended-post-content">
                             <h3>{post.attributes.title}</h3>
