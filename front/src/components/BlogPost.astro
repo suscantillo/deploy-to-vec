@@ -272,6 +272,12 @@ function getImageUrl(imageObject) {
         }
 
 
+        .recommended-posts {
+            display:flex;
+            flex-direction: column ;
+            align-items: center 
+        }
+
         .recommended-posts h2 {
             font-size: 1.5em;
             color: #225b73;
@@ -279,9 +285,10 @@ function getImageUrl(imageObject) {
         }
 
         .recommended-post {
-            margin-bottom: 1.5rem;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
+            width: 80%;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 30px;
             overflow: hidden;
             transition: transform 0.2s ease-in-out;
         }
@@ -344,12 +351,19 @@ function getImageUrl(imageObject) {
             <h2>Posts Recomendados</h2>
             {recommendedPosts.map((post) => (
                 <div class="recommended-post">
-                    <a href={'/convocatorias/${post.attributes.slug}'}>
+                    <a href={`/convocatorias/${post.attributes.slug}`}>
                         <img src={getImageUrl(post.attributes.featuredimage)} alt={post.attributes.title} />
                         <div class="recommended-post-content">
-                            <h3>{post.attributes.title}</h3>
-                            <p>{post.attributes.excerpt || 'No hay resumen disponible'}</p>
+                            <h2>{post.attributes.title}</h2>
+                            <div class="category-tag">
+                                {post.attributes.category.data.attributes.Name}
+                            </div>
+                            <div class="date-tag">
+                                {post.attributes.createdAt.slice(0,7)}
+                            </div>
                         </div>
+                    
+                    
                     </a>
                 </div>
             ))}
