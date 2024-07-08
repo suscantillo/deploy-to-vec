@@ -62,22 +62,25 @@
         }
 
         @media (max-width: 768px) {
-        .title-column h1 {
-                font-size: 2em;
-                margin-top: 2.5em;
+            .container{
+                margin-bottom: 0;
             }
+            .title-column h1 {
+                    font-size: 2em;
+                    margin-top: 1em;
+                }
 
-        .sup {
-                width: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                padding: 20px 0px 20px 0px;
-            }
+            .sup {
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    padding: 20px 0px 20px 0px;
+                }
 
-        .inf {
-                display: none;
-            }
+            .inf {
+                    display: none;
+                }
         }
         
         a {
@@ -190,6 +193,7 @@
             .cards-container {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reducir aún más el ancho mínimo */
                 padding: 0 2rem; /* Ajustar el padding en dispositivos móviles */
+                margin-top: 2rem;
             }
 
             .card__icon {
