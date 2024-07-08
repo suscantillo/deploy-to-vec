@@ -70,6 +70,7 @@ function getImageUrl(imageObject) {
             line-height: 1.2;
             color: white;
             width: fit-content;
+            margin-bottom: 10px;
         }
 
         .date-tag {
@@ -85,6 +86,13 @@ function getImageUrl(imageObject) {
             width: fit-content;
         
         }
+
+        @media (max-width: 768px) {
+            .date-tag{
+                margin-left: 0;
+            }
+        }
+
         .excerpt-text {
             font-size: 1.25em;
         }
