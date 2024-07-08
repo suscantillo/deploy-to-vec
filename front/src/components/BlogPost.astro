@@ -73,6 +73,19 @@ function getImageUrl(imageObject) {
             margin-bottom: 10px;
         }
 
+
+        .main-category-tag {
+            font-weight: 600;
+            display: inline-block;
+            border-radius: 100px;
+            background-color: #41bbb1;
+            padding: 0.5em 0.9em;
+            font-size: 0.9em;
+            line-height: 1.2;
+            color: white;
+            width: fit-content;
+        }
+
         .date-tag {
             margin-left: 10px;
             font-weight: 600;
@@ -331,7 +344,7 @@ function getImageUrl(imageObject) {
             <div class="text-container">
                 <h1 class="blog-title font-bold mb-4">{title}</h2>
                 <div class="category-tag-wrapper">
-                    <div class="category-tag">
+                    <div class="main-category-tag">
                         {category?.data?.attributes?.Name}
                     </div>
                     <div class="date-tag ">
