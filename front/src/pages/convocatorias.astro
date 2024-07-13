@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro"
 import Convocatorias2 from "../components/Convocatorias2.astro"
+import LoadingScreen from "../components/LoadingScreen.astro";
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -10,6 +11,7 @@ import Convocatorias2 from "../components/Convocatorias2.astro"
     <title>Krea Proyectos - Convocatorias</title>
 </head>
 <DefaultLayout>
+  <LoadingScreen />
   <Convocatorias2 />
 </DefaultLayout>
 </html>
