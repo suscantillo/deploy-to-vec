@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro"
-import Blog from "../components/Blogs.astro"
+import Blog from "../components/Blogs.astro";
+import LoadingScreen from "../components/LoadingScreen.astro";
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -10,6 +11,7 @@ import Blog from "../components/Blogs.astro"
     <title>Krea Proyectos - Blog</title>
 </head>
 <DefaultLayout>
+  <LoadingScreen />
   <Blog />
 </DefaultLayout>
 </html>
