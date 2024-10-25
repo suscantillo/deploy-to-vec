@@ -2,6 +2,7 @@
 import ContentMedia from "./ContentMedia.astro";
 let img_path = "../../public/Resources/main-content1.svg";
 import 'aos/dist/aos.css'; 
+import Separator from "./Separator.astro"
 ---
 <html lang="en">
   <head>
@@ -14,78 +15,298 @@ import 'aos/dist/aos.css';
         margin: 0;
         padding: 0;
       }
-      .content-estadisticas {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-around;
-        padding: 0px 20px 50px 20px; /* Ajusta los paddings según necesites */
-        overflow-x: hidden; /* Evita el scroll horizontal */
+
+      .custom-title {
+        font-size: 2.5rem;
+        color: #225b73;
+        font-weight: 700;
+        margin: 50px;
+        line-height: 1.1;
       }
 
-      .estadisticas {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem;
-        margin-top: 1rem;
-        width: 100%; /* Ocupa todo el ancho disponible inicialmente */
-        max-width: 250px; /* Tamaño máximo para las tarjetas en pantallas grandes */
-        text-align: center;
-        gap: 1rem;
-        flex: 1 1 33%; /* Distribuye las tarjetas uniformemente en una línea */
+      .custom-text-color {
+        color: #225b73;
+        font-weight: 700;
+        margin: 50px;
+        font-size: 2.5em;
       }
-      .estadisticas h2 {
-        font-family: 'Raleway';
-        font-size: 1.3em;
-        font-weight: 400;
-        color: #333;
-        margin: 0;
-      }
-      .icon {
-        font-size: 50px;
-        color: #41bbb1;
+
+      .custom-font {
+        font-family: 'Raleway', sans-serif;
       }
 
       @media (max-width: 1024px) {
-        .estadisticas {
-          max-width: 200px; /* Ajusta el ancho máximo para pantallas medianas */
+        .custom-title {
+          font-size: 2rem; /* Ajuste para pantallas medianas */
         }
       }
 
       @media (max-width: 768px) {
-        .content-estadisticas {
-          flex-wrap: wrap; /* Cambia a wrap para pantallas pequeñas */
-          padding: 0px 10px 50px 10px; /* Ajusta los paddings según necesites */
-        }
-
-        .estadisticas {
-          flex: 1 1 100%; /* Las tarjetas ocuparán el 100% del ancho disponible en pantallas pequeñas */
-          max-width: 100%; /* Ajusta el ancho máximo para pantallas pequeñas */
+        .custom-title {
+          font-size: 2rem; /* Ajuste para pantallas pequeñas */
+          margin: 20px; /* Reduce los márgenes en pantallas pequeñas */
         }
       }
+
+      @media (max-width: 480px) {
+        .custom-title {
+          font-size: 2rem; /* Ajuste para pantallas muy pequeñas (móviles) */
+          margin: 10px; /* Reduce aún más los márgenes en pantallas muy pequeñas */
+        }
+      }
+
+
+      .content {
+            display: flex;
+            flex-wrap: wrap; /* Permite que los elementos se ajusten en varias líneas si es necesario */
+            padding: 0px 70px 0px 70px; /* Espacio alrededor del contenido para mejorar la legibilidad */
+            margin-top: 10px;
+        }
+
+    /* Estilos para los elementos de contenido */
+        .content-info {
+            flex-basis: 100%; /* Toma todo el ancho disponible por defecto */
+            padding: 20px 0px 20px 230px; /* Espacio alrededor del contenido para mejorar la legibilidad */
+            display: flex;
+            flex-direction: column; /* Apila los elementos verticalmente */
+            align-items: center; /* Centra los elementos horizontalmente */
+            justify-content: center; /* Centra los elementos verticalmente */
+        }
+
+        
+
+        .content-animation{
+            flex-basis: 100%; /* Toma todo el ancho disponible por defecto */
+            padding: 20px 20px 20px 20px ; /* Espacio alrededor del contenido para mejorar la legibilidad */
+            display: flex;
+            flex-direction: column; /* Apila los elementos verticalmente */
+            align-items: center; /* Centra los elementos horizontalmente */
+            justify-content: center; /* Centra los elementos verticalmente */
+        }
+        
+        .content-info-m  {
+            flex-basis: 100%; /* Toma todo el ancho disponible por defecto */
+            padding: 20px 230px 20px 0px; /* Espacio alrededor del contenido para mejorar la legibilidad */
+            display: flex;
+            flex-direction: column; /* Apila los elementos verticalmente */
+            align-items: center; /* Centra los elementos horizontalmente */
+            justify-content: center; /* Centra los elementos verticalmente */
+        }
+
+        @media (max-width: 767px) {
+            .content-info {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+
+        .content-info li {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.3em;
+            font-weight: 400;
+            color: #225b73;
+            margin-bottom: 10px;
+        }
+
+
+        .content-info ul {
+            list-style-type: none; /* Quita las viñetas predeterminadas */
+            padding: 0; /* Elimina el relleno predeterminado del navegador */
+        }
+
+        .content-info-m li {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.3em;
+            font-weight: 400;
+            color: #225b73;
+            margin-bottom: 10px;
+        }
+
+        .content-info-m ul {
+            list-style-type: none; /* Quita las viñetas predeterminadas */
+            padding: 0; /* Elimina el relleno predeterminado del navegador */
+        }
+
+
+        .content-info span {
+            vertical-align: middle; /* Alinea verticalmente el texto con la viñeta */
+        }
+
+        .content-info-m .mid span {
+            vertical-align: middle; /* Alinea verticalmente el texto con la viñeta */
+        }
+
+        .content-animation {
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /* Media query para pantallas pequeñas (móviles) */
+          
+        @media (max-width: 768px) {
+            .content{
+                padding: 20px;
+            }
+
+            
+
+            .content-info, .content-info-m,
+            .content-animation {
+                    flex-basis: 100%; /* Asegura que ambos ocupen todo el ancho en pantallas pequeñas */
+                    padding: 0; /* Elimina el relleno en pantallas pequeñas */
+
+                }
+
+            .content-animation{
+                align-items: center;
+                width: 300px;
+            }
+
+            .title {
+                display: flex; /* Hace que los elementos hijos estén en una línea */
+                align-items: center; /* Centra verticalmente los elementos hijos */
+                justify-content: center;
+            }
+
+        }
+
+        /* Media query para pantallas medianas (tablets) */
+        @media (min-width: 773px) and (max-width: 1024px) {
+            .content{
+                padding: 0px 20px 0px 20px;
+            }
+
+            .content-info {
+                    flex-basis: 40%; /* Divide el espacio en dos partes iguales para pantallas medianas */
+                    padding: 20px 0px 20px 30px;
+                }
+            
+            .content-info-m {
+                flex-basis: 40%; /* Divide el espacio en dos partes iguales para pantallas medianas */
+                padding: 20px 30px 20px 0px;
+            }
+
+            
+            .content-animation{
+                flex-basis: 60%;
+            }
+            
+        }
+
+        /* Media query para pantallas grandes */
+        @media (min-width: 1025px) {
+            .content-info, .content-info-m,
+            .content-animation {
+                    flex-basis: 50%; /* Ajusta el tamaño según sea necesario para pantallas grandes */
+                }
+        }
+
+        .title {
+            display: flex; /* Hace que los elementos hijos estén en una línea */
+            align-items: center; /* Centra verticalmente los elementos hijos */
+            
+        }
+
+        .title p{
+          font-family: 'Raleway', sans-serif;
+        }
+
+        .title .bold {
+            font-size: 3em; /* Tamaño de fuente grande */
+            font-weight: 800;
+            color: #41bbb1; /* Color de texto */
+            margin-right: 10px; /* Espacio a la derecha del texto */
+            
+        }
+
+        .title .light {
+            font-size: 2em; /* Tamaño de fuente más pequeño */
+            font-weight: 500; /* Peso de fuente normal */
+            color: #225b73; /* Color de texto */
+        }
+
+        .especial{
+            text-align: center;
+        }
+
+
     </style>
   </head>
   
   <body>
-      <div class="content-estadisticas">
-        <div class="estadisticas" data-aos="fade-right" data-aos-delay="300">
-            <i class="fa-solid fa-check-double icon"></i>
-            <h2>Encuentra un aspecto diferenciador</h2>
+    <h1 data-aos="fade-right" class="text-center mb-4 font-bold custom-font custom-title">Las cifras ratifican nuestro éxito</h1>
+    <div class="content">
+      <div class="content-info">
+          <ul>
+              <li><span>Hemos asistido a muchas empresas en diversos sectores, brindándoles soluciones personalizadas que han permitido optimizar sus procesos, incrementar su productividad y alcanzar sus objetivos.</span></li>
+              
+          </ul>
+      </div>
+
+      <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+
+    
+      <div class="content-animation">
+        <dotlottie-player src="https://lottie.host/e559b1e0-de38-4447-b4ee-2794aed592f1/3QM1oNpEVH.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+        
+        <div class="title">
+          <p class="bold">12</p>
+          <p class="light">Años de experiencia</p>
         </div>
-        <div class="estadisticas" data-aos="fade-down" data-aos-delay="300">
-            <i class="fa-solid fa-sack-dollar icon"></i>
-            <h2>Accede a beneficios tributarios y regalías</h2>
-        </div>
-        <div class="estadisticas" data-aos="fade-left" data-aos-delay="300">
-            <i class="fa-solid fa-award icon"></i>
-            <h2>Potencia el éxito de tu empresa</h2>
-        </div>
+        
+      </div>
+  </div>
+
+  <Separator/>
+
+  <div class="content">
+    
+    <div class="content-animation">
+      <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+
+    <dotlottie-player src="https://lottie.host/7016d3a9-9fdd-422f-b9a0-0a60b4bddb08/7iuoDyfzCb.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+    
+    <div class="title">
+      <p class="bold">90%</p>
+      <p class="light">Ejecución</p>
     </div>
+  
+  </div>
+
+    <div class="content-info-m">
+        <ul>
+            <li><span>Contamos con una tasa de ejecución del 90% en todos los proyectos que hemos gestionado. Esto se traduce en una implementación eficiente y efectiva de las estrategias propuestas.</span></li>
+            
+        </ul>
+    </div>
+</div>
+
+<Separator/>
+
+<div class="content">
+  <div class="content-info">
+      <ul>
+          <li><span>Han sido aprobados más de 40 mil millones en financiamientos para proyectos innovadores y expansiones empresariales que impulsan el desarrollo y la sostenibilidad.</span></li>
+          
+      </ul>
+  </div>
+
+  <div class="content-animation">
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+
+    <dotlottie-player src="https://lottie.host/45cc2ca9-8e1b-4eab-9705-02d91c3c6630/aRUsNV1mbV.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+  
+    <div class="title">
+      <p class="bold">+494</p>
+      <p class="light" class="especial">Mil millones<br> recursos aprobados</p>
+    </div>
+  
+  </div>
+</div>
     <script>
         import AOS from 'aos';
         AOS.init();
     </script>
   </body>
   </html>
-

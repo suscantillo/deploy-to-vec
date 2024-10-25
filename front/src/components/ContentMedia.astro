@@ -11,18 +11,13 @@ import 'aos/dist/aos.css';
       {!reverseImg ?
         <div class="img-container" data-aos="fade-right" data-aos-delay="500">
           <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-          <dotlottie-player src="https://lottie.host/d671f312-1922-4516-bd90-9f572b170eef/xe7f5x0NwJ.lottie" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+          <dotlottie-player src="https://lottie.host/4a686956-e3dc-4f7d-8f11-a90de26f6d85/I1ITs4Q2MI.json" background="transparent" speed="1" style="width: 400px; height: 400px; max-width: 100%; max-height: 100%;" loop autoplay></dotlottie-player>
         </div>
       
       : ''}
       <div class="space-content flex flex-col justify-center p-4">
         <slot />
       </div>
-      {reverseImg ?
-        <div class="img-container">
-          <lottie-player src="https://lottie.host/3e533933-c279-4a51-9844-bbc0bd9dec1f/qR87KWkTrM.json" background="##fff" speed="1" style="width: 300px; height: 300px" loop controls autoplay direction="1" mode="normal"></lottie-player>
-        </div>
-      : ''}
     </div>
   </div>
 </section>
@@ -79,4 +74,26 @@ import 'aos/dist/aos.css';
   .grid {
     align-items: center;
   }
+
+  @media (max-width: 768px) {
+  .img-container dotlottie-player {
+    width: 300px !important; /* Cambia el tamaño para tablets */
+    height: 300px !important;
+    max-width: 100%;
+  }
+  .grid {
+    gap: 0; /* Elimina el espacio entre los elementos en pantallas pequeñas */
+  }
+   
+}
+
+@media (max-width: 480px) {
+  .img-container dotlottie-player {
+    width: 300px !important; /* Cambia el tamaño para móviles */
+    height: 300px !important;
+    max-width: 100%;
+  }
+}
+
+
 </style>
