@@ -1,5 +1,5 @@
 ---
-const STRAPI_URL = 'https://krea-back-repo-production.up.railway.app'; 
+const STRAPI_URL = 'https://strapi-production-8f7f.up.railway.app/'; 
 
 function getImageUrl(imageObject) {
   if (!imageObject || !imageObject.data || !imageObject.data.attributes || !imageObject.data.attributes.url) {
@@ -11,65 +11,86 @@ function getImageUrl(imageObject) {
 
 async function getPosts() {
   try {
-    const apiUrl = new URL('https://krea-back-repo-production.up.railway.app/api/posts?populate=*&filters[category][Name][$eq]=Blogs');
-    const response = await fetch(apiUrl.toString(), {cache: 'no-store'});
-    const { data } = await response.json();
-    return data;
+    // Primero, verifica que la URL sea la correcta
+    const apiUrl = new URL(`${STRAPI_URL}api/posts?populate=*&filters[category][Name][$eq]=Blog`);
+    
+    console.log('Fetching from URL:', apiUrl.toString()); // Para debug
+    
+    const response = await fetch(apiUrl.toString(), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store'
+    });
+
+    if (!response.ok) {
+      console.error('Error en la respuesta:', response.status, response.statusText);
+      return [];
+    }
+
+    const result = await response.json();
+    console.log('API Response:', result); // Para debug
+
+    if (!result || !result.data) {
+      console.error('No hay datos en la respuesta');
+      return [];
+    }
+
+    return result.data;
   } catch (error) {
     console.error('Error fetching posts:', error);
     return [];
   }
 }
 
-const posts = await getPosts();
+let posts = [];
+try {
+  posts = await getPosts() || [];
+} catch (error) {
+  console.error('Error al obtener posts:', error);
+  posts = [];
+}
 
+// Debug
+console.log('Posts antes del render:', posts);
 ---
+
 <body>
-<section class="opportunities-section">
-  <div class="container">
-      <div class="column divider-column sup">
-          <div class="divider"></div>
-      </div>
-      <div class="column title-column">
-          <h3>Entérate y accede a nuevas oportunidades </h3>
-      </div>
-      <div class="column divider-column inf">
-          <div class="divider"></div>
-      </div>
-  </div>
-  <div class="content">
-      <p>Descubre oportunidades innovadoras en el Sistema de Ciencia, Tecnología e Innovación del país. Participa en emocionantes convocatorias para dar vida a tus proyectos. ¡Sé parte del movimiento que está transformando el futuro!</p>
-  </div>
-</section>
+<!-- El resto de tu código HTML permanece igual -->
 <div class="cards-container">
-  {posts.map((post) => (
-    <div class="card">
-      <a href={`/convocatorias/${post.attributes.slug}`} title={post.attributes.title}>
-        <img 
-          src={getImageUrl(post.attributes.featuredimage)} 
-          alt={post.attributes.title} 
-        />
-      </a>
-      <span class="category">
-        <a href="#">{post.attributes.category?.data?.attributes?.Name || 'Sin categoría'}</a>
-      </span>
-      <div class="details">
-        <h3>
-          <a href={`/convocatorias/${post.attributes.slug}`}>{post.attributes.title}</a>
-        </h3>
-        <p>{post.attributes.excerpt || 'No hay resumen disponible'}</p>
-        <div class="meta">
-          <span class="author">
-            <i class="fa fa-user" aria-hidden="true"></i> By 
-            <a href="#">{post.attributes.author?.data?.attributes?.Name || 'Autor Desconocido'}</a>
-          </span>
-          <span class="date">
-            <i class="fa fa-calendar-alt" aria-hidden="true"></i> {new Date(post.attributes.publishedAt).toLocaleDateString()}
-          </span>
+  {Array.isArray(posts) && posts.length > 0 ? (
+    posts.map((post) => (
+      <div class="card">
+        <a href={`/convocatorias/${post.attributes?.slug || ''}`} title={post.attributes?.title || ''}>
+          <img 
+            src={getImageUrl(post.attributes?.featuredimage)} 
+            alt={post.attributes?.title || ''} 
+          />
+        </a>
+        <span class="category">
+          <a href="#">{post.attributes?.category?.data?.attributes?.Name || 'Sin categoría'}</a>
+        </span>
+        <div class="details">
+          <h3>
+            <a href={`/convocatorias/${post.attributes?.slug || ''}`}>{post.attributes?.title || ''}</a>
+          </h3>
+          <p>{post.attributes?.excerpt || 'No hay resumen disponible'}</p>
+          <div class="meta">
+            <span class="author">
+              <i class="fa fa-user" aria-hidden="true"></i> By 
+              <a href="#">{post.attributes?.author?.data?.attributes?.Name || 'Autor Desconocido'}</a>
+            </span>
+            <span class="date">
+              <i class="fa fa-calendar-alt" aria-hidden="true"></i> 
+              {post.attributes?.publishedAt ? new Date(post.attributes.publishedAt).toLocaleDateString() : ''}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  ))}
+    ))
+  ) : (
+    <div>No hay posts disponibles</div>
+  )}
 </div>
 </body>
   
